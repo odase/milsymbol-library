@@ -1,0 +1,28 @@
+{
+  "name": "milsymbol-library",
+  "version": "0.1.4",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/odaseontologies/milsymbol-library"
+  },
+  "author": {
+    "name": "Mileem",
+    "email": "sarah@odaseontologies.com"
+  },
+  "keywords": [
+    "angular"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/odaseontologies/milsymbol-library/issues"
+  },
+  "main": "milsymbol-library.umd.js",
+  "module": "milsymbol-library.js",
+  "jsnext:main": "milsymbol-library.js",
+  "typings": "milsymbol-library.d.ts",
+  "peerDependencies": {
+    "@angular/core": "^4.0.0",
+    "rxjs": "^5.1.0",
+    "zone.js": "^0.8.4"
+  }
+}
