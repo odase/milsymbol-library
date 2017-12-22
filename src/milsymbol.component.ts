@@ -22,7 +22,6 @@ export class MilsymbolComponent implements AfterViewInit {
         this.symbol = new ms.Symbol(this.sidc, {size: this.size}, {uniqueDesignation: this.uniqueDesignation});
         this.canvasElement = this.symbol.asCanvas();
         let milsymbolElement = document.getElementById(this.uniqueIdMap);
-        console.log(milsymbolElement);
         milsymbolElement.appendChild(this.canvasElement);
     }
 
