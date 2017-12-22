@@ -1,22 +1,28 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, AfterViewInit, SimpleChanges } from '@angular/core';
 
 declare var ms: any;
 
 @Component({
   selector: 'milsymbol',
-  template: `<div id="milsymbol"></div>`
+  template: `<div [id]="uniqueIdMap"></div>`
 })
-export class MilsymbolComponent implements OnInit {
+export class MilsymbolComponent implements AfterViewInit {
     @Input() sidc: string = <string>null;
     @Input() size: number = <number>null;
     @Input() uniqueDesignation: string = <string>null;
+    uniqueIdMap: string;
     symbol: any;
     canvasElement:  HTMLCanvasElement;
 
-    ngOnInit() {
+    constructor() {
+        this.uniqueIdMap = 'map_' + Math.random().toString(36).substr(2, 9);
+    }
+
+    ngAfterViewInit() {
         this.symbol = new ms.Symbol(this.sidc, {size: this.size}, {uniqueDesignation: this.uniqueDesignation});
         this.canvasElement = this.symbol.asCanvas();
-        let milsymbolElement = document.getElementById("milsymbol");
+        let milsymbolElement = document.getElementById(this.uniqueIdMap);
+        console.log(milsymbolElement);
         milsymbolElement.appendChild(this.canvasElement);
     }
 
@@ -64,7 +70,7 @@ export class MilsymbolComponent implements OnInit {
 
     updateCanvas() {
         let tmp = this.canvasElement;
-        let milsymbolElement = document.getElementById("milsymbol");
+        let milsymbolElement = document.getElementById(this.uniqueIdMap);
         milsymbolElement.removeChild(tmp);
         this.canvasElement = this.symbol.asCanvas();
         milsymbolElement.appendChild(this.canvasElement);
