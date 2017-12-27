@@ -45,6 +45,7 @@ export class MapMilsymbolComponent implements AfterViewInit, OnChanges {
           attribution:
           '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(this.map);
+      this.addExistingMarker();
     }
 
     updateSymbolsOnMap(): void {
@@ -72,6 +73,16 @@ export class MapMilsymbolComponent implements AfterViewInit, OnChanges {
         });
         let marker = L.marker(location, {icon: icon});
         this.currentMarkers.push(marker);
-        marker.addTo(this.map);
+        if(this.map) {
+            marker.addTo(this.map);
+        }
+    }
+
+    addExistingMarker() {
+        if(this.map) {
+            for(let marker of this.currentMarkers) {
+                marker.addTo(this.map);
+            }
+        }
     }
 }
